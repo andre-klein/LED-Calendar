@@ -1,35 +1,35 @@
-const int numOfLEDs = 31;
-const int LEDPins[numOfLEDs] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+#include <LedControl.h>
+#include <Wire.h>
 
+// create a LedControl object
+LedControl lc = LedControl(12, 11, 10, 1);
+
+const int numOfLEDs = 31;  // number of LEDs in the matrix
+
+// initialize the LED matrix
 void setup() {
-  for (int i = 0; i < numOfLEDs; i++) {
-    pinMode(LEDPins[i], OUTPUT);
-  }
+  lc.shutdown(0, false);
+  lc.setIntensity(0, 8);
+  lc.clearDisplay(0);
 }
 
+// update the LED matrix to show the current date
 void loop() {
-  // Get the current day of the month
-  int currentDay = getCurrentDay();
-  
-  // Turn on the LED for the current day
-  for (int i = 0; i < currentDay; i++) {
-    digitalWrite(LEDPins[i], HIGH);
+  int day = getCurrentDay();  // get the current day
+  for (int i = 0; i < numOfLEDs; i++) {
+    if (i < day) {
+      lc.setLed(0, i / 8, i % 8, true);  // turn on the LED
+    } else {
+      lc.setLed(0, i / 8, i % 8, false);  // turn off the LED
+    }
   }
-  
-  // Turn off the rest of the LEDs
-  for (int i = currentDay; i < numOfLEDs; i++) {
-    digitalWrite(LEDPins[i], LOW);
-  }
-  
-  delay(1000);
+  delay(1000);  // wait for a second
 }
 
-// Function to get the current day of the month
+// get the current day in a month (for this example, we assume that the month has 31 days)
 int getCurrentDay() {
-  // Get the current date and time
-  time_t now = time(0);
-  tm *localTime = localtime(&now);
-  
-  // Return the current day of the month
-  return localTime->tm_mday;
+  // replace this code with the actual code to get the current day
+  static int day = 1;
+  day = (day % 31) + 1;
+  return day;
 }
