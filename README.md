@@ -1,12 +1,6 @@
 # LED-Calendar
 
 
-In this code, LEDPins is an array that holds the pin numbers for each LED, and numOfLEDs is the number of LEDs, which is set to 31.
+In this code, the LedControl library is used to control the LED matrix. The setup function initializes the LED matrix by setting the shutdown mode, the intensity, and clearing the display. The loop function updates the LED matrix to show the current date by getting the current day from the getCurrentDay function, and then turning on the corresponding LEDs.
 
-The setup function sets all the LED pins as outputs.
-
-In the loop function, we use the getCurrentDay function to get the current day of the month, and then turn on the LED for the current day using a for loop. The rest of the LEDs are turned off using another for loop. The delay(1000) at the end of the loop function is to slow down the refresh rate so that the changes to the LED state are more visible.
-
-The getCurrentDay function uses the time library to get the current date and time, and then returns the current day of the month using the tm_mday field of the tm struct.
-
-This code will sync the LED array to the current date and turn on one LED at a time, cumulatively, to simulate a calendar. You can modify the code as needed to fit your specific requirements.
+Note: The getCurrentDay function is a dummy function for this example and should be replaced with actual code to get the current day from the system's clock or from some other source.
