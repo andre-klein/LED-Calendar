@@ -26,10 +26,12 @@ void loop() {
   delay(1000);  // wait for a second
 }
 
-// get the current day in a month (for this example, we assume that the month has 31 days)
+// Function to get the current day of the month
 int getCurrentDay() {
-  // replace this code with the actual code to get the current day
-  static int day = 1;
-  day = (day % 31) + 1;
-  return day;
+  // Get the current date and time
+  time_t now = time(0);
+  tm *localTime = localtime(&now);
+  
+  // Return the current day of the month
+  return localTime->tm_mday;
 }
