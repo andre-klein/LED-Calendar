@@ -1,0 +1,7 @@
+I am using blue (clear) led with 3-3.4 v and 20 mA
+Arduino high output is 5 v and low is 0 (techically 4.7 v)
+Resistor val is 100 ohm
+https://kitronik.co.uk/blogs/resources/which-resistor-should-i-use-with-my-led
+https://kitronik.co.uk/blogs/resources/led-resistor-value-calculator
+3565 standard led 3mm
+battery voltage 4.7v
